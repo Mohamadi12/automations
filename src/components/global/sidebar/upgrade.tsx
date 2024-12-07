@@ -26,3 +26,6 @@ const UpgradeCard = () => {
 }
 
 export default UpgradeCard
+
+// UpgradeCard : Carte d'upgrade pour utilisateur.
+// PaymentButton : Bouton de paiement intégré.

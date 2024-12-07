@@ -81,3 +81,14 @@ const Sidebar = ({ slug }: Props) => {
 };
 
 export default Sidebar;
+
+// Sidebar : Barre latérale pour navigation.
+// usePaths : Récupère chemin pour affichage.
+// LogoSmall : Affiche logo dans barre.
+// Items : Gère éléments de navigation.
+// Separator : Ligne de séparation visuelle.
+// ClerkAuthState : État utilisateur (connexion/déconnexion).
+// SubscriptionPlan : Affiche type d'abonnement actuel.
+// UpgradeCard : Propose options de mise à niveau.
+// HelpDuoToneWhite : Icône pour section d'aide.
+// CSS classes : Définit styles (grille, couleurs, etc.).

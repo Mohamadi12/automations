@@ -46,3 +46,9 @@ const ClerkAuthState = () => {
 };
 
 export default ClerkAuthState;
+
+// ClerkLoading : Loader pour état de chargement.
+// SignedOut : Bouton connexion utilisateur invité.
+// SignedIn : Affichage options utilisateur connecté.
+// UserButton : Gestion profil utilisateur connecté.
+// Button : Bouton stylisé pour interaction.

@@ -28,3 +28,15 @@ const Items = ({ page, slug }: Props) => {
 };
 
 export default Items;
+
+
+// SIDEBAR_MENU : Liste des éléments du menu.
+// cn : Utilitaire pour gestion des classes.
+// Link : Création de liens dynamiques.
+// page : Détermine la page active.
+// slug : Paramètre dynamique de l'URL.
+// map : Parcours du menu pour items.
+// bg-[#0f0f0f] : Couleur de fond active.
+// capitalize : Mise en majuscule des labels.
+// flex : Disposition flexible pour items.
+// rounded-full : Bordures arrondies pour éléments.

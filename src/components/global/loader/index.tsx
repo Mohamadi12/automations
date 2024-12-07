@@ -20,3 +20,9 @@ const Loader = ({ children, className, color, state }: Props) => {
 };
 
 export default Loader;
+
+// Spinner : Affiche une animation chargement.
+// state : Détermine affichage chargement/enfants.
+// cn(className) : Ajoute styles personnalisés dynamiquement.
+// children : Contenu affiché si non-chargement.
+// color : Couleur personnalisable pour spinner.

@@ -70,10 +70,14 @@ export const onBoardUser = async () => {
   }
 };
 
+export const onUserInfo = async () => {
+  const user = await onCurrentUser(); //renvoie l'utilisateur actuellement connecté
+  try {
+    const profile = await findUser(user.id); //Cette fonction recherche le profil correspondant dans la base de données.
+    if (profile) return { status: 200, data: profile }; //Si un profil est trouvé
 
-
-
-
-
-
-
+    return { status: 404 }; //Si on a pas trouvé
+  } catch (error) {
+    return { status: 500 };
+  }
+};

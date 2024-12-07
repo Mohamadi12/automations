@@ -1,10 +1,12 @@
+import { onBoardUser } from '@/actions/user'
 import React from 'react'
 
-const DashboardPage = () => {
+const Page = async() => {
     //Server Action Onboard the user
+    const user = await onBoardUser()
   return (
-    <div>DashboardPage</div>
+    <div>Page</div>
   )
 }
 
-export default DashboardPage
+export default Page

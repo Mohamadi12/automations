@@ -37,3 +37,25 @@ export const duplicateValidation = (arr: string[], el: string) => {
     return arr
   }
 }
+
+// La fonction duplicateValidation est utilisée pour valider et gérer les doublons dans un tableau de chaînes de caractères. Voici ce que vous devez savoir :
+
+// Paramètres :
+
+// arr : Un tableau de chaînes de caractères à valider.
+
+// el : La chaîne de caractères à ajouter ou à retirer du tableau.
+
+// Fonctionnement :
+
+// Vérification des Doublons :
+
+// La fonction vérifie si el est déjà présent dans le tableau arr.
+
+// Si el n'est pas présent, il est ajouté au tableau.
+
+// Si el est déjà présent, il est retiré du tableau.
+
+// Retour :
+
+// La fonction retourne le tableau arr mis à jour.

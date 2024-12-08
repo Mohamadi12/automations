@@ -10,12 +10,12 @@ import Items from "../sidebar/items";
 import { Separator } from "@/components/ui/separator";
 import ClerkAuthState from "../clerk-auth-state";
 import { HelpDuoToneWhite } from "@/icons";
-import SubscriptionPlan from "../subscription-plan";
 import UpgradeCard from "../sidebar/upgrade";
 import CreateAutomation from "../create-automation";
 import Search from "./search";
 import Notifications from "./notifications";
 import MainBreadCrumb from "../bread-crumbs/main-bread-crumb";
+import { SubscriptionPlan } from "../subscription-plan";
 
 type Props = {
   slug: string;

@@ -1,3 +1,4 @@
+import { useQueryUser } from '@/hooks/user-queries'
 import React from 'react'
 
 type Props = {
@@ -5,10 +6,12 @@ type Props = {
     children: React.ReactNode
 }
 
-const SubscriptionPlan = ({children, type}: Props) => {
-  return (
-    <div>{children}n</div>
-  )
+export const SubscriptionPlan = ({ children, type }: Props) => {
+  const { data } = useQueryUser()
+  return data?.data?.subscription?.plan === type && children
 }
 
-export default SubscriptionPlan
+
+// Récupération des Données : Utilise useQueryUser pour récupérer les informations de l'utilisateur, y compris le plan d'abonnement.
+
+// Affichage Conditionnel : Affiche le contenu children uniquement si le plan d'abonnement de l'utilisateur correspond au type spécifié.

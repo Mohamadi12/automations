@@ -7,8 +7,8 @@ import Items from "./items";
 import { Separator } from "@/components/ui/separator";
 import ClerkAuthState from "../clerk-auth-state";
 import { HelpDuoToneWhite } from "@/icons";
-import SubscriptionPlan from "../subscription-plan";
 import UpgradeCard from "./upgrade";
+import { SubscriptionPlan } from "../subscription-plan";
 
 type Props = {
   slug: string;

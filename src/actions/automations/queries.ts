@@ -96,3 +96,119 @@ export const updateAutomation = async (
 // Mise à Jour de l'Automatisation : Utilise une requête de base de données pour mettre à jour les propriétés name et active d'une automatisation spécifique.
 // Filtrage par ID : Utilise l'identifiant unique de l'automatisation pour cibler la mise à jour.
 // Retour : Retourne l'automatisation mise à jour.
+
+
+export const addListener = async (
+  automationId: string,
+  listener: 'SMARTAI' | 'MESSAGE',
+  prompt: string,
+  reply?: string
+) => {
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      listener: {
+        create: {
+          listener,
+          prompt,
+          commentReply: reply,
+        },
+      },
+    },
+  })
+}
+// La fonction addListener est une fonction asynchrone utilisée pour ajouter un listener à une automatisation spécifique dans une base de données. Voici ce que vous devez savoir :
+// Paramètres :
+// automationId : Identifiant unique de l'automatisation à laquelle ajouter le listener.
+// listener : Type de listener ('SMARTAI' ou 'MESSAGE').
+// prompt : Texte du prompt associé au listener.
+// reply (optionnel) : Texte de la réponse associée au listener.
+// Fonctionnement :
+// Mise à Jour de l'Automatisation :
+// La fonction utilise client.automation.update pour mettre à jour l'automatisation dans la base de données.
+// where: { id: automationId } : Filtre la mise à jour par l'identifiant unique de l'automatisation.
+// data : Contient les données du listener à créer, incluant le type de listener, le prompt, et la réponse.
+// Retour :
+// La fonction retourne le résultat de l'opération de mise à jour, qui est l'automatisation mise à jour avec le nouveau listener.
+
+
+// La fonction addKeyWord est une fonction asynchrone utilisée pour ajouter un mot-clé à une 
+// automatisation spécifique dans une base de données
+export const addKeyWord = async (automationId: string, keyword: string) => {
+  return client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      keywords: {
+        create: {
+          word: keyword,
+        },
+      },
+    },
+  })
+}
+
+
+// La fonction deleteKeywordQuery est une fonction asynchrone utilisée pour supprimer
+//  un mot-clé spécifique d'une base de données
+export const deleteKeywordQuery = async (id: string) => {
+  return client.keyword.delete({
+    where: { id },
+  })
+}
+
+
+
+export const addTrigger = async (automationId: string, trigger: string[]) => {
+  if (trigger.length === 2) {
+    return await client.automation.update({
+      where: { id: automationId },
+      data: {
+        trigger: {
+          createMany: {
+            data: [{ type: trigger[0] }, { type: trigger[1] }],
+          },
+        },
+      },
+    })
+  }
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      trigger: {
+        create: {
+          type: trigger[0],
+        },
+      },
+    },
+  })
+}
+// La fonction addTrigger est une fonction asynchrone utilisée pour ajouter un ou plusieurs déclencheurs à une automatisation spécifique dans une base de données. Voici ce que vous devez savoir :
+// Paramètres :
+// automationId : Identifiant unique de l'automatisation à laquelle ajouter les déclencheurs.
+// trigger : Un tableau de chaînes de caractères représentant les types de déclencheurs à ajouter.
+// Fonctionnement :
+// Vérification du Nombre de Déclencheurs :
+// Si le tableau trigger contient exactement deux éléments, la fonction utilise createMany pour ajouter les deux déclencheurs en une seule opération.
+// Sinon, elle utilise create pour ajouter un seul déclencheur.
+// Mise à Jour de l'Automatisation :
+// La fonction utilise client.automation.update pour mettre à jour l'automatisation dans la base de données.
+// where: { id: automationId } : Filtre la mise à jour par l'identifiant unique de l'automatisation.
+// data : Contient les données des déclencheurs à créer.
+// Retour :
+// La fonction retourne le résultat de l'opération de mise à jour, qui est l'automatisation mise à jour avec les nouveaux déclencheurs.
+
+
+
+
+
+
+
+
+
+

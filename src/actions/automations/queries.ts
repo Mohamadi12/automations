@@ -59,8 +59,8 @@ export const findAutomation = async (id: string) => {
         },
       },
     },
-  })
-}
+  });
+};
 
 // La fonction findAutomation est une fonction asynchrone utilisée pour récupérer une automatisation spécifique à partir d'une base de données. Voici ce que vous devez savoir :
 // Paramètre :
@@ -77,3 +77,22 @@ export const findAutomation = async (id: string) => {
 // User : L'utilisateur associé, avec des champs spécifiques sélectionnés (subscription et integrations).
 // Retour :
 // La fonction retourne l'automatisation trouvée avec toutes les relations incluses.
+
+export const updateAutomation = async (
+  id: string,
+  update: {
+    name?: string;
+    active?: boolean;
+  }
+) => {
+  return await client.automation.update({
+    where: { id },
+    data: {
+      name: update.name,
+      active: update.active,
+    },
+  });
+};
+// Mise à Jour de l'Automatisation : Utilise une requête de base de données pour mettre à jour les propriétés name et active d'une automatisation spécifique.
+// Filtrage par ID : Utilise l'identifiant unique de l'automatisation pour cibler la mise à jour.
+// Retour : Retourne l'automatisation mise à jour.

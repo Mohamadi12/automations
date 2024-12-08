@@ -1,7 +1,7 @@
 "use server";
 
 import { onCurrentUser } from "../user";
-import { createAutomation, findAutomation, getAutomations } from "./queries";
+import { createAutomation, findAutomation, getAutomations, updateAutomation } from "./queries";
 
 export const createAutomations = async (id?: string) => {
   const user = await onCurrentUser(); //Récupération de l'utilisateur courant
@@ -55,3 +55,27 @@ export const getAutomationInfo = async (id: string) => {
 // En cas d'erreur lors de la recherche, elle retourne un objet avec un statut 500.
 // Retour :
 // La fonction retourne un objet avec un statut HTTP (200, 404, ou 500) et éventuellement les données de l'automatisation.
+
+
+
+// Elle utilise updateAutomation(automationId, data) pour mettre 
+// à jour l'automatisation avec les nouvelles données.
+export const updateAutomationName = async (
+  automationId: string,
+  data: {
+    name?: string
+    active?: boolean
+    automation?: string
+  }
+) => {
+  await onCurrentUser()
+  try {
+    const update = await updateAutomation(automationId, data)
+    if (update) {
+      return { status: 200, data: 'Automation successfully updated' }
+    }
+    return { status: 404, data: 'Oops! could not find automation' }
+  } catch (error) {
+    return { status: 500, data: 'Oops! something went wrong' }
+  }
+}

@@ -1,4 +1,4 @@
-import { getAllAutomations } from "@/actions/automations";
+import { getAllAutomations, getAutomationInfo } from "@/actions/automations";
 import { onUserInfo } from "@/actions/user";
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
@@ -15,14 +15,33 @@ const prefetch = async (
   });
 };
 
+
+
 //Une fonction asynchrone exportée est définie pour précharger les données du profil utilisateur.
 export const PrefetchUserProfile = async (client: QueryClient) => {
   //La fonction onUserInfo (qui récupère les informations utilisateur) et La clé 'user-profile' pour identifier cette requête.
   return await prefetch(client, onUserInfo, "user-profile");
 };
 
+
+
 //Une fonction asynchrone exportée est définie pour précharger les données du profil utilisateur.
 export const PrefetchUserAutnomations = async (client: QueryClient) => {
   //La fonction getAllAutomations (qui récupère les informations automatiques) et La clé 'user-automations' pour identifier cette requête.
   return await prefetch(client, getAllAutomations, "user-automations");
+};
+
+
+
+//Utilise prefetch pour précharger les informations d'une automatisation spécifique dans le cache de react-query.
+export const PrefetchUserAutomation = async (
+  client: QueryClient,
+  automationId: string
+) => {
+  //Fonction qui récupère les informations de l'automatisation specifique
+  return await prefetch(
+    client,
+    () => getAutomationInfo(automationId),
+    "automation-info"
+  );
 };

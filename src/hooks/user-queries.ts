@@ -1,4 +1,4 @@
-import { getAllAutomations, getAutomationInfo } from "@/actions/automations";
+import { getAllAutomations, getAutomationInfo, getProfilePosts } from "@/actions/automations";
 import { onUserInfo } from "@/actions/user";
 import { useQuery } from "@tanstack/react-query";
 
@@ -25,3 +25,13 @@ export const useQueryUser = () => {
     queryFn: onUserInfo,
   });
 };
+
+
+// Le hook useQueryAutomationPosts est utilisé pour récupérer les publications d'un profil Instagram
+export const useQueryAutomationPosts = () => {
+  const fetchPosts = async () => await getProfilePosts()
+  return useQuery({
+    queryKey: ['instagram-media'],
+    queryFn: fetchPosts,
+  })
+}

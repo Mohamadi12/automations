@@ -5,6 +5,7 @@ import {
   deleteKeyword,
   saveKeyword,
   saveListener,
+  savePosts,
   saveTrigger,
   updateAutomationName,
 } from "@/actions/automations";
@@ -249,4 +250,58 @@ export const useTriggers = (id: string) => {
 // types : Tableau de types de déclencheurs.
 // onSetTrigger : Fonction pour définir un type de déclencheur.
 // onSaveTrigger : Fonction pour déclencher la mutation d'ajout des déclencheurs.
+// isPending : Indicateur de statut de la mutation.
+
+export const useAutomationPosts = (id: string) => {
+  const [posts, setPosts] = useState<
+    {
+      postid: string;
+      caption?: string;
+      media: string;
+      mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+    }[]
+  >([]);
+
+  const onSelectPost = (post: {
+    postid: string;
+    caption?: string;
+    media: string;
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+  }) => {
+    setPosts((prevItems) => {
+      if (prevItems.find((p) => p.postid === post.postid)) {
+        return prevItems.filter((item) => item.postid !== post.postid);
+      } else {
+        return [...prevItems, post];
+      }
+    });
+  };
+
+  const { mutate, isPending } = useMutationData(
+    ["attach-posts"],
+    () => savePosts(id, posts),
+    "automation-info",
+    () => setPosts([])
+  );
+  return { posts, onSelectPost, mutate, isPending };
+};
+// Le hook useAutomationPosts est utilisé pour gérer les publications dans une automatisation. Voici ce que vous devez savoir :
+// Paramètres :
+// id : Identifiant unique de l'automatisation.
+// État :
+// posts : Un tableau d'objets représentant les publications sélectionnées, avec les propriétés postid, caption, media, et mediaType.
+// setPosts : Une fonction pour mettre à jour l'état posts.
+// Fonctions :
+// onSelectPost : Une fonction pour sélectionner ou désélectionner une publication. Si la publication est déjà sélectionnée, elle est retirée du tableau. Sinon, elle est ajoutée au tableau.
+// Mutations :
+// Ajout de Publications :
+// Utilise useMutationData pour gérer la mutation d'ajout de publications.
+// mutate : Fonction pour déclencher la mutation avec les publications sélectionnées.
+// savePosts(id, posts) : Fonction pour enregistrer les publications dans l'automatisation.
+// setPosts([]) : Réinitialise l'état posts après l'ajout des publications.
+// Retour :
+// Le hook retourne un objet avec les propriétés suivantes :
+// posts : Tableau des publications sélectionnées.
+// onSelectPost : Fonction pour sélectionner ou désélectionner une publication.
+// mutate : Fonction pour déclencher la mutation d'ajout des publications.
 // isPending : Indicateur de statut de la mutation.

@@ -97,10 +97,9 @@ export const updateAutomation = async (
 // Filtrage par ID : Utilise l'identifiant unique de l'automatisation pour cibler la mise à jour.
 // Retour : Retourne l'automatisation mise à jour.
 
-
 export const addListener = async (
   automationId: string,
-  listener: 'SMARTAI' | 'MESSAGE',
+  listener: "SMARTAI" | "MESSAGE",
   prompt: string,
   reply?: string
 ) => {
@@ -117,8 +116,8 @@ export const addListener = async (
         },
       },
     },
-  })
-}
+  });
+};
 // La fonction addListener est une fonction asynchrone utilisée pour ajouter un listener à une automatisation spécifique dans une base de données. Voici ce que vous devez savoir :
 // Paramètres :
 // automationId : Identifiant unique de l'automatisation à laquelle ajouter le listener.
@@ -133,8 +132,7 @@ export const addListener = async (
 // Retour :
 // La fonction retourne le résultat de l'opération de mise à jour, qui est l'automatisation mise à jour avec le nouveau listener.
 
-
-// La fonction addKeyWord est une fonction asynchrone utilisée pour ajouter un mot-clé à une 
+// La fonction addKeyWord est une fonction asynchrone utilisée pour ajouter un mot-clé à une
 // automatisation spécifique dans une base de données
 export const addKeyWord = async (automationId: string, keyword: string) => {
   return client.automation.update({
@@ -148,19 +146,16 @@ export const addKeyWord = async (automationId: string, keyword: string) => {
         },
       },
     },
-  })
-}
-
+  });
+};
 
 // La fonction deleteKeywordQuery est une fonction asynchrone utilisée pour supprimer
 //  un mot-clé spécifique d'une base de données
 export const deleteKeywordQuery = async (id: string) => {
   return client.keyword.delete({
     where: { id },
-  })
-}
-
-
+  });
+};
 
 export const addTrigger = async (automationId: string, trigger: string[]) => {
   if (trigger.length === 2) {
@@ -173,7 +168,7 @@ export const addTrigger = async (automationId: string, trigger: string[]) => {
           },
         },
       },
-    })
+    });
   }
   return await client.automation.update({
     where: {
@@ -186,8 +181,8 @@ export const addTrigger = async (automationId: string, trigger: string[]) => {
         },
       },
     },
-  })
-}
+  });
+};
 // La fonction addTrigger est une fonction asynchrone utilisée pour ajouter un ou plusieurs déclencheurs à une automatisation spécifique dans une base de données. Voici ce que vous devez savoir :
 // Paramètres :
 // automationId : Identifiant unique de l'automatisation à laquelle ajouter les déclencheurs.
@@ -203,12 +198,39 @@ export const addTrigger = async (automationId: string, trigger: string[]) => {
 // Retour :
 // La fonction retourne le résultat de l'opération de mise à jour, qui est l'automatisation mise à jour avec les nouveaux déclencheurs.
 
-
-
-
-
-
-
+export const addPost = async (
+  autmationId: string,
+  posts: {
+    postid: string;
+    caption?: string;
+    media: string;
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+  }[]
+) => {
+  return await client.automation.update({
+    where: {
+      id: autmationId,
+    },
+    data: {
+      posts: {
+        createMany: {
+          data: posts,
+        },
+      },
+    },
+  });
+};
+// La fonction addPost est une fonction asynchrone utilisée pour ajouter une ou plusieurs publications à une automatisation spécifique dans une base de données. Voici ce que vous devez savoir :
+// Paramètres :
+// autmationId : Identifiant unique de l'automatisation à laquelle ajouter les publications.
+// posts : Un tableau d'objets représentant les publications à ajouter, avec les propriétés postid, caption, media, et mediaType.
+// Fonctionnement :
+// Mise à Jour de l'Automatisation :
+// La fonction utilise client.automation.update pour mettre à jour l'automatisation dans la base de données.
+// where: { id: autmationId } : Filtre la mise à jour par l'identifiant unique de l'automatisation.
+// data : Contient les données des publications à créer, en utilisant createMany pour ajouter plusieurs publications en une seule opération.
+// Retour :
+// La fonction retourne le résultat de l'opération de mise à jour, qui est l'automatisation mise à jour avec les nouvelles publications.
 
 
 

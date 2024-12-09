@@ -1,4 +1,6 @@
 import { getAutomationInfo } from '@/actions/automations'
+import PostNode from '@/components/global/automations/post/node'
+import ThenNode from '@/components/global/automations/then/node'
 import Trigger from '@/components/global/automations/trigger'
 import AutomationsBreadCrumb from '@/components/global/bread-crumbs/automations'
 import { Warning } from '@/icons'
@@ -32,8 +34,8 @@ const Page = async ({ params }: Props) => {
           </div>
           <Trigger id={params.id} />
         </div>
-        {/* <ThenNode id={params.id} />
-        <PostNode id={params.id} /> */}
+        <ThenNode id={params.id} />
+        <PostNode id={params.id} />
       </div>
     </HydrationBoundary>
   )
@@ -51,7 +53,10 @@ export default Page
 
 // getAutomationInfo : Une fonction pour récupérer les informations d'une automatisation.
 
-// PostNode, ThenNode, Trigger, AutomationsBreadCrumb, Warning : Des composants pour afficher les différentes parties de l'automatisation.
+// Trigger : Affiche et gérer les déclencheurs d'une automatisation, permettant aux utilisateurs de sélectionner et d'ajouter de nouveaux déclencheurs.
+// AutomationsBreadCrumb : Affiche un fil d'Ariane pour une automatisation spécifique, permettant à l'utilisateur d'éditer le nom de l'automatisation et d'activer/désactiver l'automatisation.
+// PostNode : Affiche les publications associées à une automatisation.
+// ThenNode : Affiche les actions à effectuer après un déclencheur dans une automatisation.
 
 // Hooks et Fonctions :
 

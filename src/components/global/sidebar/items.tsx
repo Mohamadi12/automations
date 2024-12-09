@@ -29,14 +29,21 @@ const Items = ({ page, slug }: Props) => {
 
 export default Items;
 
-
-// SIDEBAR_MENU : Liste des éléments du menu.
-// cn : Utilitaire pour gestion des classes.
-// Link : Création de liens dynamiques.
-// page : Détermine la page active.
-// slug : Paramètre dynamique de l'URL.
-// map : Parcours du menu pour items.
-// bg-[#0f0f0f] : Couleur de fond active.
-// capitalize : Mise en majuscule des labels.
-// flex : Disposition flexible pour items.
-// rounded-full : Bordures arrondies pour éléments.
+// Le composant Items est utilisé pour afficher les éléments de navigation dans une barre latérale. Voici ce que vous devez savoir :
+// Imports :
+// Composants :
+// Link : Un composant de next/link pour la navigation.
+// Hooks et Fonctions :
+// cn : Une fonction utilitaire pour combiner des classes CSS conditionnelles.
+// Constantes :
+// SIDEBAR_MENU : Une constante contenant les éléments de navigation.
+// Props :
+// page : Chaîne de caractères représentant la page actuelle.
+// slug : Chaîne de caractères représentant l'identifiant de la page actuelle.
+// Fonctionnement :
+// Affichage des Éléments de Navigation :
+// Le composant mappe sur SIDEBAR_MENU pour afficher chaque élément de navigation.
+// Chaque élément est un lien (Link) avec une URL générée en fonction du slug et du label de l'élément.
+// Les liens sont stylisés différemment en fonction de la page actuelle (page) et du slug.
+// Si la page actuelle correspond au label de l'élément, le lien est mis en surbrillance avec un fond sombre (bg-[#0f0f0f]).
+// Si la page actuelle correspond au slug et que l'élément est "home", le lien est également mis en surbrillance.

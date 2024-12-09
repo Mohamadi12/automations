@@ -65,10 +65,7 @@ const InfoBar = ({ slug }: Props) => {
           <CreateAutomation />
           <Notifications />
         </div>
-        <MainBreadCrumb
-          page={page === slug ? 'Home' : page}
-          slug={slug}
-        />
+        <MainBreadCrumb page={page === slug ? "Home" : page} slug={slug} />
       </div>
     )
   );
@@ -76,13 +73,23 @@ const InfoBar = ({ slug }: Props) => {
 
 export default InfoBar;
 
-// usePaths : Gestion des chemins d'URL.
-// PAGE_BREAD_CRUMBS : Liste des pages valides.
-// Sheet : Sidebar ou menu latéral.
-// Items : Affichage des éléments de navigation.
-// Separator : Ligne de séparation stylisée.
-// ClerkAuthState : Gestion de l'état utilisateur.
-// SubscriptionPlan : Gestion du plan d'abonnement.
-// UpgradeCard : Suggestion d'amélioration de plan.
-// Search : Barre de recherche intégrée.
-// MainBreadCrumb : Gestion du fil d'Ariane.
+// Le composant InfoBar est utilisé pour afficher une barre d'informations dans une application React avec Next.js. Voici ce que vous devez savoir :
+// Imports :
+// Composants :
+// Menu, Separator : Des icônes de lucide-react pour la navigation et la séparation visuelle.
+// Sheet : Un composant pour afficher un menu déroulant.
+// Items, ClerkAuthState, HelpDuoToneWhite, SubscriptionPlan, UpgradeCard, LogoSmall, CreateAutomation, Search, Notifications, MainBreadCrumb : Des composants pour afficher différentes fonctionnalités et informations.
+// Hooks et Fonctions :
+// usePaths : Un hook personnalisé pour récupérer le chemin actuel de l'URL.
+// Constantes :
+// PAGE_BREAD_CRUMBS : Une constante contenant les pages pour lesquelles la barre d'informations doit être affichée.
+// Props :
+// slug : Chaîne de caractères représentant l'identifiant de la page actuelle.
+// Fonctionnement :
+// Récupération des Données :
+// Le composant utilise usePaths() pour récupérer le chemin actuel de l'URL.
+// Affichage Conditionnel :
+// Le composant affiche la barre d'informations uniquement si la page actuelle est dans PAGE_BREAD_CRUMBS ou si le slug correspond à la page actuelle.
+// Barre d'Informations :
+// Affiche un menu déroulant (Sheet) pour les appareils mobiles avec des options de navigation, un bouton de recherche, un bouton pour créer une nouvelle automatisation, et un bouton pour afficher les notifications.
+// Affiche un fil d'Ariane (MainBreadCrumb) pour indiquer la page actuelle.

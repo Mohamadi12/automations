@@ -16,6 +16,7 @@ type Props = {
 
 const Sidebar = ({ slug }: Props) => {
   const { page } = usePaths();
+
   return (
     <div
       className="w-[250px] 
@@ -48,17 +49,14 @@ const Sidebar = ({ slug }: Props) => {
        backdrop--blur__safari 
        backdrop-blur-3xl"
       >
-        <div className="flex gap-x-2 items-center justify-center">
-          <LogoSmall/>
+        <div className="flex gap-x-2 items-center p-5 justify-center">
+          <LogoSmall />
         </div>
         <div className="flex flex-col py-3">
-          <Items page={page} slug={slug}/>
+          <Items page={page} slug={slug} />
         </div>
         <div className="px-16">
-          <Separator
-            orientation="horizontal"
-            className="bg-[#333336]"
-          />
+          <Separator orientation="horizontal" className="bg-[#333336]" />
         </div>
         <div className="px-3 flex flex-col gap-y-5">
           <div className="flex gap-x-2">
@@ -82,13 +80,23 @@ const Sidebar = ({ slug }: Props) => {
 
 export default Sidebar;
 
-// Sidebar : Barre latérale pour navigation.
-// usePaths : Récupère chemin pour affichage.
-// LogoSmall : Affiche logo dans barre.
-// Items : Gère éléments de navigation.
-// Separator : Ligne de séparation visuelle.
-// ClerkAuthState : État utilisateur (connexion/déconnexion).
-// SubscriptionPlan : Affiche type d'abonnement actuel.
-// UpgradeCard : Propose options de mise à niveau.
-// HelpDuoToneWhite : Icône pour section d'aide.
-// CSS classes : Définit styles (grille, couleurs, etc.).
+// Le composant Sidebar est utilisé pour afficher une barre latérale dans une application React avec Next.js. Voici ce que vous devez savoir :
+// Imports :
+// Composants :
+// Separator : Un composant pour afficher une séparation visuelle.
+// ClerkAuthState, HelpDuoToneWhite, SubscriptionPlan, UpgradeCard, LogoSmall : Des composants pour afficher différentes fonctionnalités et informations.
+// Items : Un composant pour afficher les éléments de navigation.
+// Hooks et Fonctions :
+// usePaths : Un hook personnalisé pour récupérer le chemin actuel de l'URL.
+// Props :
+// slug : Chaîne de caractères représentant l'identifiant de la page actuelle.
+// Fonctionnement :
+// Récupération des Données :
+// Le composant utilise usePaths() pour récupérer le chemin actuel de l'URL.
+// Affichage de la Barre Latérale :
+// Affiche une barre latérale fixe avec un fond dégradé et un arrière-plan semi-transparent.
+// Affiche le logo de l'application (LogoSmall).
+// Affiche les éléments de navigation (Items) avec le chemin actuel et le slug.
+// Affiche une séparation visuelle (Separator).
+// Affiche des options de profil (ClerkAuthState) et d'aide (HelpDuoToneWhite).
+// Affiche une option d'upgrade (UpgradeCard) conditionnellement en fonction du plan d'abonnement (SubscriptionPlan).

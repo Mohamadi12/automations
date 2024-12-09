@@ -230,3 +230,39 @@ export const getProfilePosts = async () => {
   }
 }
 
+
+
+
+
+
+
+
+export const activateAutomation = async (id: string, state: boolean) => {
+  await onCurrentUser()
+  try {
+    const update = await updateAutomation(id, { active: state })
+    if (update)
+      return {
+        status: 200,
+        data: `Automation ${state ? 'activated' : 'disabled'}`,
+      }
+    return { status: 404, data: 'Automation not found' }
+  } catch (error) {
+    return { status: 500, data: 'Oops! something went wrong' }
+  }
+}
+// La fonction activateAutomation est une fonction asynchrone utilisée pour activer ou désactiver une automatisation spécifique. Voici ce que vous devez savoir :
+// Paramètres :
+// id : Identifiant unique de l'automatisation à activer ou désactiver.
+// state : Un booléen indiquant si l'automatisation doit être activée (true) ou désactivée (false).
+// Fonctionnement :
+// Vérification de l'Utilisateur Actuel :
+// La fonction commence par appeler onCurrentUser() pour vérifier ou obtenir l'utilisateur actuel.
+// Mise à Jour de l'Automatisation :
+// Elle utilise updateAutomation(id, { active: state }) pour mettre à jour l'état de l'automatisation.
+// Si la mise à jour réussit, elle retourne un objet avec un statut 200 et un message indiquant si l'automatisation a été activée ou désactivée.
+// Si la mise à jour échoue, elle retourne un objet avec un statut 404 et un message d'erreur.
+// Gestion des Erreurs :
+// En cas d'erreur lors de la mise à jour, elle retourne un objet avec un statut 500 et un message d'erreur générique.
+// Retour :
+// La fonction retourne un objet avec un statut HTTP (200, 404, ou 500) et un message correspondant.

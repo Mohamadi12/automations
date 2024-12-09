@@ -2,7 +2,17 @@
 
 import { onCurrentUser } from "../user";
 import { findUser } from "../user/queries";
-import { addKeyWord, addListener, addPost, addTrigger, createAutomation, deleteKeywordQuery, findAutomation, getAutomations, updateAutomation } from "./queries";
+import {
+  addKeyWord,
+  addListener,
+  addPost,
+  addTrigger,
+  createAutomation,
+  deleteKeywordQuery,
+  findAutomation,
+  getAutomations,
+  updateAutomation,
+} from "./queries";
 
 export const createAutomations = async (id?: string) => {
   const user = await onCurrentUser(); //Récupération de l'utilisateur courant
@@ -57,46 +67,43 @@ export const getAutomationInfo = async (id: string) => {
 // Retour :
 // La fonction retourne un objet avec un statut HTTP (200, 404, ou 500) et éventuellement les données de l'automatisation.
 
-
-
-// Elle utilise updateAutomation(automationId, data) pour mettre 
+// Elle utilise updateAutomation(automationId, data) pour mettre
 // à jour l'automatisation avec les nouvelles données.
 export const updateAutomationName = async (
   automationId: string,
   data: {
-    name?: string
-    active?: boolean
-    automation?: string
+    name?: string;
+    active?: boolean;
+    automation?: string;
   }
 ) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const update = await updateAutomation(automationId, data)
+    const update = await updateAutomation(automationId, data);
     if (update) {
-      return { status: 200, data: 'Automation successfully updated' }
+      return { status: 200, data: "Automation successfully updated" };
     }
-    return { status: 404, data: 'Oops! could not find automation' }
+    return { status: 404, data: "Oops! could not find automation" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
-
+};
 
 export const saveListener = async (
   autmationId: string,
-  listener: 'SMARTAI' | 'MESSAGE',
+  listener: "SMARTAI" | "MESSAGE",
   prompt: string,
   reply?: string
 ) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const create = await addListener(autmationId, listener, prompt, reply)
-    if (create) return { status: 200, data: 'Listener created' }
-    return { status: 404, data: 'Cant save listener' }
+    const create = await addListener(autmationId, listener, prompt, reply);
+    if (create) return { status: 200, data: "Listener created" };
+    return { status: 404, data: "Cant save listener" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
+};
 // La fonction saveListener est une fonction asynchrone utilisée pour enregistrer un listener dans une automatisation spécifique. Voici ce que vous devez savoir :
 // Paramètres :
 // autmationId : Identifiant unique de l'automatisation à laquelle ajouter le listener.
@@ -115,45 +122,37 @@ export const saveListener = async (
 // Retour :
 // La fonction retourne un objet avec un statut HTTP (200, 404, ou 500) et un message correspondant.
 
-
-
-
-// La fonction saveKeyword est une fonction asynchrone utilisée 
+// La fonction saveKeyword est une fonction asynchrone utilisée
 // pour enregistrer un mot-clé dans une automatisation spécifique.
 export const saveKeyword = async (automationId: string, keyword: string) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const create = await addKeyWord(automationId, keyword)
+    const create = await addKeyWord(automationId, keyword);
 
-    if (create) return { status: 200, data: 'Keyword added successfully' }
+    if (create) return { status: 200, data: "Keyword added successfully" };
 
-    return { status: 404, data: 'Cannot add this keyword' }
+    return { status: 404, data: "Cannot add this keyword" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
+};
 
-
-
-
-// La fonction deleteKeyword est une fonction asynchrone 
+// La fonction deleteKeyword est une fonction asynchrone
 // utilisée pour supprimer un mot-clé spécifique d'une base de données
 export const deleteKeyword = async (id: string) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const deleted = await deleteKeywordQuery(id)
+    const deleted = await deleteKeywordQuery(id);
     if (deleted)
       return {
         status: 200,
-        data: 'Keyword deleted',
-      }
-    return { status: 404, data: 'Keyword not found' }
+        data: "Keyword deleted",
+      };
+    return { status: 404, data: "Keyword not found" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
-
-
+};
 
 // La fonction saveTrigger est une fonction asynchrone utilisée pour enregistrer un ou plusieurs déclencheurs dans une automatisation spécifique. Voici ce que vous devez savoir :
 // Paramètres :
@@ -165,38 +164,36 @@ export const deleteKeyword = async (id: string) => {
 // Ajout des Déclencheurs :
 // Elle utilise addTrigger(automationId, trigger) pour ajouter les déclencheurs à l'automatisation.
 export const saveTrigger = async (automationId: string, trigger: string[]) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const create = await addTrigger(automationId, trigger)
-    if (create) return { status: 200, data: 'Trigger saved' }
-    return { status: 404, data: 'Cannot save trigger' }
+    const create = await addTrigger(automationId, trigger);
+    if (create) return { status: 200, data: "Trigger saved" };
+    return { status: 404, data: "Cannot save trigger" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
-
-
+};
 
 export const savePosts = async (
   autmationId: string,
   posts: {
-    postid: string
-    caption?: string
-    media: string
-    mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+    postid: string;
+    caption?: string;
+    media: string;
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
   }[]
 ) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const create = await addPost(autmationId, posts)
+    const create = await addPost(autmationId, posts);
 
-    if (create) return { status: 200, data: 'Posts attached' }
+    if (create) return { status: 200, data: "Posts attached" };
 
-    return { status: 404, data: 'Automation not found' }
+    return { status: 404, data: "Automation not found" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
+};
 // La fonction savePosts est une fonction asynchrone utilisée pour enregistrer une ou plusieurs publications dans une automatisation spécifique. Voici ce que vous devez savoir :
 // Paramètres :
 // autmationId : Identifiant unique de l'automatisation à laquelle ajouter les publications.
@@ -208,49 +205,39 @@ export const savePosts = async (
 // Elle utilise addPost(autmationId, posts) pour ajouter les publications à l'automatisation.
 // Si l'ajout réussit, elle retourne un objet avec un statut 200 et un message de succès.
 
-
-
-
-// La fonction getProfilePosts est une fonction asynchrone utilisée pour récupérer 
+// La fonction getProfilePosts est une fonction asynchrone utilisée pour récupérer
 // les publications d'un profil Instagram.
 export const getProfilePosts = async () => {
-  const user = await onCurrentUser()
+  const user = await onCurrentUser();
   try {
-    const profile = await findUser(user.id)
+    const profile = await findUser(user.id);
     const posts = await fetch(
       `${process.env.INSTAGRAM_BASE_URL}/me/media?fields=id,caption,media_url,media_type,timestamp&limit=10&access_token=${profile?.integrations[0].token}`
-    )
-    const parsed = await posts.json()
-    if (parsed) return { status: 200, data: parsed }
-    console.log('🔴 Error in getting posts')
-    return { status: 404 }
+    );
+    const parsed = await posts.json();
+    if (parsed) return { status: 200, data: parsed };
+    console.log("🔴 Error in getting posts");
+    return { status: 404 };
   } catch (error) {
-    console.log('🔴 server side Error in getting posts ', error)
-    return { status: 500 }
+    console.log("🔴 server side Error in getting posts ", error);
+    return { status: 500 };
   }
-}
-
-
-
-
-
-
-
+};
 
 export const activateAutomation = async (id: string, state: boolean) => {
-  await onCurrentUser()
+  await onCurrentUser();
   try {
-    const update = await updateAutomation(id, { active: state })
+    const update = await updateAutomation(id, { active: state });
     if (update)
       return {
         status: 200,
-        data: `Automation ${state ? 'activated' : 'disabled'}`,
-      }
-    return { status: 404, data: 'Automation not found' }
+        data: `Automation ${state ? "activated" : "disabled"}`,
+      };
+    return { status: 404, data: "Automation not found" };
   } catch (error) {
-    return { status: 500, data: 'Oops! something went wrong' }
+    return { status: 500, data: "Oops! something went wrong" };
   }
-}
+};
 // La fonction activateAutomation est une fonction asynchrone utilisée pour activer ou désactiver une automatisation spécifique. Voici ce que vous devez savoir :
 // Paramètres :
 // id : Identifiant unique de l'automatisation à activer ou désactiver.
